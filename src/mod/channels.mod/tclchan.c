@@ -1512,12 +1512,25 @@ static int tcl_channel_modify(Tcl_Interp *irp, struct chanset_t *chan,
       p = strchr(item[i], ':');
       if (p) {
         *p++ = 0;
-        *pthr = atoi(item[i]);
-        *ptime = atoi(p);
-        *--p = ':';
+        if ((!atoi(item[i]) && !strcmp(item[i], "0")) || (!atoi(p) && !strcmp(p, "0"))) {
+          *--p = ':';
+          if (irp)
+            Tcl_AppendResult(irp, "values must be integers: ", item[i], NULL);
+          return TCL_ERROR;
+        } else {
+          *pthr = atoi(item[i]);
+          *ptime = atoi(p);
+          *--p = ':';
+        }
       } else {
-        *pthr = atoi(item[i]);
-        *ptime = 1;
+        if (atoi(item[i])) {
+          *pthr = atoi(item[i]);
+          *ptime = 1;
+        } else {
+          if (irp)
+            Tcl_AppendResult(irp, "value must be an integer: ", item[i], NULL);
+          return TCL_ERROR;
+        }
       }
     } else if (!strncmp(item[i], "aop-delay", 9)) {
       char *p;
