@@ -5,4 +5,4 @@ addons:
             - tcl-dev
             - openssl
 language: C
-script: make
+script: ./configure && make config && make && make install
