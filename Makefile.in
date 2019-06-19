@@ -485,4 +485,63 @@ install-doc: install-start
 install-scripts: install-start
 	+@cd scripts/ && $(MAKE_INSTALL) install
 
+test: eggdrop
+	@if test -f $(DEST)/$(EGGEXEC)-$(EGGVERSION); then \
+	    echo "PASS: Eggdrop executable found"; \
+    else \
+        echo "FAIL: Eggdrop executable missing"; \
+        exit 1; \
+    fi && \
+	if test -h $(DEST)/$(EGGEXEC); then \
+        echo "PASS: Eggdrop symlink found"; \
+	else \
+        echo "FAIL: Eggdrop symlink missing"; \
+        exit 1; \
+	fi && \
+	if test -h $(DEST)/modules; then \
+        echo "PASS: modules symlink present"; \
+	else echo "FAIL: modules symlink missing"; \
+    fi && \
+	if test -d $(DEST)/modules-$(EGGVERSION); then \
+        echo "PASS: modules directory present"; \
+    else echo "FAIL: modules directory missing"; \
+    fi && \
+	if test -d $(DEST)/help; then \
+        echo "PASS: help dir present"; \
+    else echo "FAIL: help dir missing"; \
+    fi && \
+	if test -f $(DEST)/eggdrop.conf; then \
+        echo "PASS: eggdrop.conf present"; \
+    else echo "FAIL: eggdrop.conf missing"; \
+    fi && \
+	if test -f $(DEST)/eggdrop-basic.conf; then \
+        echo "PASS: eggdrop-basic.conf present"; \
+    else echo "FAIL: eggdrdrop-basic.conf present"; \
+	fi && \
+	if test -d $(DEST)/logs; then \
+	    echo "PASS: logs directory present"; \
+	else \
+	    echo "FAIL: logs direcrory missing";  \
+	    exit 1; \
+	fi && \
+	if test -d $(DEST)/text; then \
+        echo "PASS: text directory present"; \
+    fi && \
+    if test -f $(DEST)/text/motd; then \
+        echo "PASS: text/motd present"; \
+    fi && \
+    if test -f $(DEST)/text/banner; then \
+        echo "PASS: text/banner present"; \
+    fi && \
+	if test -d $(DEST)/language; then \
+	    echo "PASS: Language dir present"; \
+	else echo "FAIL: Language dir missing"; \
+    fi && \
+	$(egg_test_run) && \
+	if test $$? -eq 0; then \
+	    echo "PASS: Compile check."; \
+	else \
+	    echo "FAIL: Compile check."; \
+	fi
+
 #safety hash
