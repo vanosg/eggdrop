@@ -1,1 +1,8 @@
+dist: xenial
+addons:
+    apt:
+        packages:
+            - tcl-dev
+            - openssl
 language: C
+script: make
