@@ -5,12 +5,23 @@ addons:
         packages:
             - tcl-dev
             - openssl
-language: C
+            - bats
+            - libssl-dev 
+            - zlib1g-dev
+            - procps
+            - netcat
+            - bats
+            - tar
+            - telnet
+language: bash
 
 services:
     - docker
 
-script: ./configure && make config && make && make install && make test
+script: 
+#    - ./configure && make config && make && make install && make test
+    - bats eggdrop_compile_configure.bats
+    - bats eggdrop_compile_make.bats
 
-before_install:
-    - docker build https://github.com/eggheads/eggdrop-docker.git#master:develop
+#before_install:
+#    - docker build https://github.com/eggheads/eggdrop-docker.git#master:develop
