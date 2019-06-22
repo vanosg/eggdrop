@@ -1,8 +1,16 @@
 dist: xenial
+
 addons:
     apt:
         packages:
             - tcl-dev
             - openssl
 language: C
+
+services:
+    - docker
+
 script: ./configure && make config && make && make install && make test
+
+before_install:
+    - docker build https://github.com/eggheads/eggdrop-docker.git#eggdrop:develop
