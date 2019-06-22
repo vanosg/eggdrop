@@ -13,4 +13,4 @@ services:
 script: ./configure && make config && make && make install && make test
 
 before_install:
-    - docker build https://github.com/eggheads/eggdrop-docker.git#eggdrop:develop
+    - docker build https://github.com/eggheads/eggdrop-docker.git#master:develop
