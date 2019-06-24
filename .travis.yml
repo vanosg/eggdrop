@@ -15,23 +15,24 @@ addons:
             - telnet
 language: C
 
-#services:
-#    - docker
+services:
+    - docker
 
 compiler:
     - gcc
 
 before_install:
     - git clone https://github.com/eggheads/eggdrop-tests.git
-#    - docker build https://github.com/eggheads/eggdrop-docker.git#master:develop
+    - docker build https://github.com/eggheads/eggdrop-tests.git#master:Dockerfiles/dockerfile_git_compiled
 
 script: 
 #    - ./configure && make config && make && make install && make test
     - bats eggdrop-tests/eggdrop_compile_configure.bats
     - bats eggdrop-tests/eggdrop_compile_make.bats
     - bats eggdrop-tests/eggdrop_compile_testrun.bats
-    - bats eggdrop-tests/eggdrop_chanset_inputvalidation.bats
-    - bats eggdrop-tests/eggdrop_tcl_iscmds.bats
+#    - bats eggdrop-tests/eggdrop_chanset_inputvalidation.bats
+#    - bats eggdrop-tests/eggdrop_tcl_iscmds.bats
+###################################################################################
 #    - echo travis:$foop | sudo chpasswd
 #    - sudo sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
 #    - sudo service ssh restart
