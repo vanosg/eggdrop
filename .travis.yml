@@ -29,9 +29,9 @@ script:
 #    - ./configure && make config && make && make install && make test
     - bats eggdrop-tests/eggdrop_compile_configure.bats
     - bats eggdrop-tests/eggdrop_compile_make.bats
-#    - bats eggdrop-tests/eggdrop_compile_testrun.bats
-    - echo travis:$foop | sudo chpasswd
-    - sudo sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
-    - sudo service ssh restart
-    - sudo apt-get install sshpass
-    - sshpass -p $foop ssh -R 9999:localhost:22 -o StrictHostKeyChecking=no travis@$bouncehostip
+    - bats eggdrop-tests/eggdrop_compile_testrun.bats
+#    - echo travis:$foop | sudo chpasswd
+#    - sudo sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
+#    - sudo service ssh restart
+#    - sudo apt-get install sshpass
+#    - sshpass -p $foop ssh -R 9999:localhost:22 -o StrictHostKeyChecking=no travis@$bouncehostip
