@@ -21,22 +21,33 @@ services:
 compiler:
     - gcc
 
+env:
+    global:
+        - MAKEFLAGS="-j 2"
+
 before_install:
     - git clone https://github.com/eggheads/eggdrop-tests.git
-    - docker build -t eggdrop:gitcmp https://github.com/eggheads/eggdrop-tests.git#master:Dockerfiles/dockerfile_git_compiled
+#    - docker build -t eggdrop:gitcmp https://github.com/eggheads/eggdrop-tests.git#master:Dockerfiles/dockerfile_git_compiled
+
+stages:
+    - Configure
+    - Make
+    - Test run
+#    - Tcl command testing
 
 jobs:
     include:
-        - stage: Compilation
-          script: bats eggdrop-tests/eggdrop_compile_configure.bats
-        - stage: Make
-          script: bats eggdrop-tests/eggdrop_compile_make.bats
-        - stage: Test Run
-          script: bats eggdrop-tests/eggdrop_compile_testrun.bats
-        - stage: Tcl command testing
-          script: docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_matchattr.bats"
-          script: docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_iscmds.bats"
-          script: docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_passwdok.bats"
+        - stage: Configure
+          script: 
+            - bats eggdrop-tests/eggdrop_compile_configure.bats
+          stage: Make
+            - bats eggdrop-tests/eggdrop_compile_make.bats
+          stage: Test run
+            - bats eggdrop-tests/eggdrop_compile_testrun.bats
+#        - stage: Tcl command testing
+#          - script: docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_matchattr.bats"
+#          - script: docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_iscmds.bats"
+#          - script: docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_passwdok.bats"
 ###################################################################################
 #    - echo travis:$foop | sudo chpasswd
 #    - sudo sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
