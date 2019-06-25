@@ -41,8 +41,10 @@ jobs:
           script: 
             - bats eggdrop-tests/eggdrop_compile_configure.bats
           stage: Make
+            script:
             - bats eggdrop-tests/eggdrop_compile_make.bats
           stage: Test run
+            script:
             - bats eggdrop-tests/eggdrop_compile_testrun.bats
 #        - stage: Tcl command testing
 #          - script: docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_matchattr.bats"
