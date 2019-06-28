@@ -40,6 +40,7 @@ jobs:
             - docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_tcl_passwdok.bats"
             - docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_partyline_bans.bats"
             - docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_partyline_flags.bats"
+            - docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_botnet_linking.bats"
             - docker run --rm -v $TRAVIS_BUILD_DIR/eggdrop-tests/:/tmp/build/tests/ eggdrop:gitcmp bash -c "bats /tmp/build/tests/eggdrop_chanset_inputvalidation.bats"
 
 ###################################################################################
