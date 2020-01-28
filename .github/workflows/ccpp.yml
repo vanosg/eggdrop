@@ -7,7 +7,7 @@ on:
     - cron: '3 4 * * 1'
 
 env:
-  TRAVIS_BUILD_DIR: eggdrop
+  TRAVIS_BUILD_DIR: /home/runner/work/eggdrop/eggdrop
   
 jobs:
   build:
