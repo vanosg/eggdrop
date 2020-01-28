@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: install dependencies
-        run: sudo apt-get install bats
+        run: sudo apt-get install bats tcl tcl-dev openssl libssl-dev gcc make
       - name: Check out code
         uses: actions/checkout@v2
       - name: Check out tests
