@@ -6,7 +6,6 @@ on:
   schedule:
     - cron: '3 4 * * 1'
 
-name: Run tests
 jobs:
   build:
     name: build
