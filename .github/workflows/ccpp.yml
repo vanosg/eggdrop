@@ -7,7 +7,7 @@ on:
     - cron: '3 4 * * 1'
 
 env:
-  TRAVIS_BUILD_DIR: /home/runner/work/eggdrop/eggdrop/eggdrop
+  TRAVIS_BUILD_DIR: /home/runner/work/eggdrop/eggdrop/
   
 jobs:
   build:
@@ -23,10 +23,8 @@ jobs:
         with:
           repository: eggheads/eggdrop-tests
           path: tests
-      - name: silly stuff
-        run: pwd; ls; ls eggdrop
       - name: Run config test
-        run: bats tests/eggdrop_compile_configure.bats
+        run: cd tests; bats eggdrop_compile_configure.bats
 #      - name: Test
 #        run: bats -r 
   test:
