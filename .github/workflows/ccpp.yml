@@ -23,7 +23,7 @@ jobs:
         with:
           repository: eggheads/eggdrop-tests
           path: tests
-      -name: silly stuff
+      - name: silly stuff
         run: pwd; ls; ls eggdrop
       - name: Run config test
         run: bats tests/eggdrop_compile_configure.bats
