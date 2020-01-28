@@ -24,7 +24,8 @@ jobs:
           repository: eggheads/eggdrop-tests
           path: tests
       - name: Run config test
-        run: cd tests; bats eggdrop_compile_configure.bats
+        run: cd $TRAVIS_BUILD_DIR && ./configure
+#        run: cd tests; bats eggdrop_compile_configure.bats
 #      - name: Test
 #        run: bats -r 
   test:
