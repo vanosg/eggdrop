@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: install dependencies
         run: sudo apt-get install bats
+      - name: setup test path
+        run: mkdir -p /tmp/build/tests
       - name: Check out code
         uses: actions/checkout@v2
       - name: Check out tests
