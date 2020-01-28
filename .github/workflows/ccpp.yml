@@ -7,7 +7,7 @@ on:
     - cron: '3 4 * * 1'
 
 env:
-  TRAVIS_BUILD_DIR: /home/runner/work/eggdrop/eggdrop
+  TRAVIS_BUILD_DIR: /home/runner/work/eggdrop/eggdrop/eggdrop
   
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: install dependencies
-        run: sudo apt-get install bats tcl tcl-dev openssl libssl-dev gcc make
+        run: sudo apt-get install bats tcl tcl-dev openssl libssl-dev
       - name: Check out code
         uses: actions/checkout@v2
       - name: Check out tests
@@ -24,6 +24,9 @@ jobs:
           repository: eggheads/eggdrop-tests
           path: tests
       - name: Run config test
+        run: pwd
+        run: ls
+        run: ls eggdrop
         run: bats tests/eggdrop_compile_configure.bats
 #      - name: Test
 #        run: bats -r 
