@@ -14,10 +14,11 @@ jobs:
       - name: install dependencies
         run: sudo apt-get install bats
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Check out tests
-        uses: eggheads/eggdrop-tests
+        uses: actions/checkout@v2
         with:
+          repository: eggheads/eggdrop-tests
           path: /tmp/build/tests
 #      - name: Test
 #        run: bats -r 
