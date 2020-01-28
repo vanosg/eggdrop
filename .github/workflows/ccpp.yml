@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: '3 4 * * 1'
 
+env:
+  TRAVIS_BUILD_DIR: eggdrop
+  
 jobs:
   build:
     name: build
@@ -20,6 +23,8 @@ jobs:
         with:
           repository: eggheads/eggdrop-tests
           path: tests
+      - name: Run config test
+        run: bats tests/eggdrop_compile_configure.bats
 #      - name: Test
 #        run: bats -r 
   test:
