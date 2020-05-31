@@ -21,7 +21,6 @@ jobs:
         with:
           repository: eggheads/eggdrop
           ref: stable/1.8
-          path: eggdrop
       - name: Check out tests
         uses: actions/checkout@v2
         with:
