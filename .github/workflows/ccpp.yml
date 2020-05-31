@@ -18,6 +18,10 @@ jobs:
         run: sudo apt-get install bats tcl tcl-dev openssl libssl-dev
       - name: Check out code
         uses: actions/checkout@v2
+        with:
+          repository: eggheads/eggdrop
+          ref: stable/1.8
+          path: eggdrop
       - name: Check out tests
         uses: actions/checkout@v2
         with:
